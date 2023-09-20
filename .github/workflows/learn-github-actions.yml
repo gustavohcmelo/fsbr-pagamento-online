@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v2
       - uses: repo-sync/pull-request@v2
         with:
-          node-version: '16'
+          node-version: 'latest'
           destination_branch: "staging"
           pr_title: "Pulling ${{ github.ref }} into staging"
           pr_body: "👑 *An automated PR*"
