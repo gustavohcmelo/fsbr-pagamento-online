@@ -1,0 +1,22 @@
+version: '3.1'
+name: fsbr-pagamentoonline-database
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ms-fsbr-pagamentoonline
+      MYSQL_USER: fsbr_dev
+      MYSQL_PASSWORD: 2fsbr_dev1
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: db_data
+      o: bind
