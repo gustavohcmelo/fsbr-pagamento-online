@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} - ${{ github.sha }} - ${{ github.event.head_commit.message }}
+name: FSBR_Pagamentos_Online
+run-name: ${{ github.actor }}_${{ github.sha }}_${{ github.event.head_commit.message }}
 on:
   push:
     branches:
