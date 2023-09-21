@@ -11,7 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  async singIn(createAuthDto: CreateAuthDto) {
+  async singIn() {
     try {
       const user = await this.userService.findByEmail(createAuthDto.email)
       const hashedPassword = await this.hashingService.check(createAuthDto.password, user.password)
@@ -25,7 +25,7 @@ export class AuthService {
         tenant: { id: user.tenant.id, name: user.tenant.name, phone: user.tenant.phone }
       }
 
-      return { token: await this.jwtService.signAsync(payload) }
+      return { access_token: await this.jwtService.signAsync(payload) }
     } catch (error) {
       throw new UnauthorizedException("Credenciais inválidas.")
     }
