@@ -11,7 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  async singIn() {
+  async singIn(createAuthDto: CreateAuthDto) {
     try {
       const user = await this.userService.findByEmail(createAuthDto.email)
       const hashedPassword = await this.hashingService.check(createAuthDto.password, user.password)
