@@ -1,12 +1,11 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} enviou um novo commit
+run-name: ${{ github.actor }} enviou um novo commit ${{ github.sha }}
 on:
   push:
     branches:
       - develop
-      - staging
 jobs:
-  development:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,25 +16,41 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run test
-  staging:
+
+  deploy-development:
     runs-on: ubuntu-latest
+    environment:
+      name: development
+      url: ${{ VARS.REPO_URL }}
+    needs: build
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm i -g @nestjs/cli
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test
-  production:
+      - name: Repository Checkou
+        uses: actions\checkout@v1
+      - run: echo running deploy to development
+      - run: echo deploy to= ${{ VARS.REPO_URL }}
+
+  deploy-staging:
     runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ VARS.REPO_URL }}
+    needs: deploy-development
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm i -g @nestjs/cli
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test
+      - name: Repository Checkou
+        uses: actions\checkout@v1
+      - run: echo running deploy to staging
+      - run: echo deploy to= ${{ VARS.REPO_URL }}
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ VARS.REPO_URL }}
+    needs: deploy-staging
+    steps:
+      - name: Repository Checkou
+        uses: actions\checkout@v1
+      - run: echo running deploy to production
+      - run: echo deploy to= ${{ VARS.REPO_URL }}
+
+
