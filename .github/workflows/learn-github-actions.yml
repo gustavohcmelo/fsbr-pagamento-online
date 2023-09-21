@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
-          path: coverage/lcov-report/index.html
+          path: coverage/*
 
   deploy-development:
     runs-on: ubuntu-latest
