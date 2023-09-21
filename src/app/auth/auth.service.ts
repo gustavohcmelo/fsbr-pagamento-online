@@ -10,7 +10,6 @@ export class AuthService {
     private readonly hashingService: HashingService,
     private readonly jwtService: JwtService
   ) {}
-
   
   async singIn(createAuthDto: CreateAuthDto) {
     try {
