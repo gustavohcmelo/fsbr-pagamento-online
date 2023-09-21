@@ -25,7 +25,7 @@ export class AuthService {
         tenant: { id: user.tenant.id, name: user.tenant.name, phone: user.tenant.phone }
       }
 
-      return { access_token: await this.jwtService.signAsync(payload) }
+      return { token: await this.jwtService.signAsync(payload) }
     } catch (error) {
       throw new UnauthorizedException("Credenciais inválidas.")
     }
