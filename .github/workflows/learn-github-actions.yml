@@ -6,7 +6,7 @@ on:
       - develop
       - staging
 jobs:
-  develop:
+  development:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,4 +17,25 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run test
-        
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm i -g @nestjs/cli
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run test
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm i -g @nestjs/cli
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run test
