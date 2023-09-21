@@ -1,5 +1,5 @@
 name: FSBR_Pagamentos_Online
-run-name: ${{ github.actor }}_${{ github.sha }}_${{ github.event.head_commit.message }}
+run-name: ${{ github.actor }} - ${{ github.sha }} - ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
@@ -28,7 +28,7 @@ jobs:
     environment:
       name: development
       url: ${{ VARS.REPO_URL }}
-    needs: build
+    needs: build-and-test
     steps:
       - run: echo running deploy to development
       - run: echo deploy to= ${{ VARS.REPO_URL }}
