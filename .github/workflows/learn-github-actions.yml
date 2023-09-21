@@ -24,8 +24,6 @@ jobs:
       url: ${{ VARS.REPO_URL }}
     needs: build
     steps:
-      - name: Repository Checkou
-        uses: actions\checkout@v1
       - run: echo running deploy to development
       - run: echo deploy to= ${{ VARS.REPO_URL }}
 
@@ -36,8 +34,6 @@ jobs:
       url: ${{ VARS.REPO_URL }}
     needs: deploy-development
     steps:
-      - name: Repository Checkou
-        uses: actions\checkout@v1
       - run: echo running deploy to staging
       - run: echo deploy to= ${{ VARS.REPO_URL }}
 
@@ -48,8 +44,6 @@ jobs:
       url: ${{ VARS.REPO_URL }}
     needs: deploy-staging
     steps:
-      - name: Repository Checkou
-        uses: actions\checkout@v1
       - run: echo running deploy to production
       - run: echo deploy to= ${{ VARS.REPO_URL }}
 
