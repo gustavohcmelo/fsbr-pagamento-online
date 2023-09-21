@@ -1,11 +1,11 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} enviou um novo commit ${{ github.sha }}
+run-name: ${{ github.actor }} - ${{ github.sha }} - ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
       - develop
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
