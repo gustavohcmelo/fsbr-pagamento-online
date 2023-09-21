@@ -11,6 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
+  
   async singIn(createAuthDto: CreateAuthDto) {
     try {
       const user = await this.userService.findByEmail(createAuthDto.email)
