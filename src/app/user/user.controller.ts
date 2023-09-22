@@ -13,6 +13,7 @@ export class UserController {
   async index() {
     return await this.userService.findAll();
   }
+  
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
